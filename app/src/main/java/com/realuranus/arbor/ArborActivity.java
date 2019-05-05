@@ -11,6 +11,8 @@ import com.orhanobut.logger.Logger;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.io.IOException;
 
@@ -32,13 +34,18 @@ public class ArborActivity extends AppCompatActivity {
             public void run() {
 //                super.run();
                 try {
-                    Document document = Jsoup.connect("https://www.lintcode.com/").get();
+                    Document document = Jsoup.connect((APP_DATA.getProblemUrl())).get();
                     String title = document.title();
-                    Logger.t(TAG).i(title);
+                    Elements links = document.select("a[href]");
+                    Logger.t(TAG).i("links:");
+                    for (Element e : links){
+                        Logger.t(TAG).i(e.tagName() + e.text());
+                    }
+//                    String body = document.body();
+//                    Logger.t(TAG).i();
                 }catch (IOException e){
                 }
             }
         }.start();
-
     }
 }
