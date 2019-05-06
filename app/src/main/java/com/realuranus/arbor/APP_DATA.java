@@ -7,6 +7,7 @@ public class APP_DATA {
 
     //selector
     private final static String PROBLEM_SELECTOR = ".nk-content table a";
+    private final static String PROBLEM_DETAIL_SELECTOR = "subject-describe";
 
     public static String getBASE_URL() {
         return BASE_URL;
